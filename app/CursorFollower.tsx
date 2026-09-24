@@ -11,6 +11,8 @@ export default function CursorFollower() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // No cursor on touch screens; the circle would just trail the finger.
+    if (window.matchMedia("(hover: none)").matches) return;
 
     const move = (e: PointerEvent) => {
       el.style.transform = `translate3d(${e.clientX - SIZE / 2}px, ${e.clientY - SIZE / 2}px, 0)`;
@@ -35,7 +37,7 @@ export default function CursorFollower() {
     <div
       ref={ref}
       aria-hidden
-      className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full bg-white transition-colors duration-200"
+      className="pointer-events-none fixed left-0 top-0 z-[9999] hidden rounded-full bg-white transition-colors duration-200 md:block"
       style={{ width: SIZE, height: SIZE, opacity: 0 }}
     />
   );

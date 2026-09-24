@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import type { CSSProperties } from "react";
 
 const stats = [
   {
@@ -133,69 +135,30 @@ export default function About() {
           <div className="relative mx-auto h-[540px] w-full max-w-[620px] sm:h-[620px] lg:h-[680px]">
 
             {/* Decorative circle */}
-            <motion.div
-              animate={{
-                rotate: 360,
-              }}
-              transition={{
-                duration: 30,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="absolute right-[4%] top-[3%] h-32 w-32 rounded-full border border-[#2878b8]/30 sm:h-40 sm:w-40"
+            <div
+              style={{ "--spin": "30s" } as CSSProperties}
+              className="about-spin absolute right-[4%] top-[3%] h-32 w-32 rounded-full border border-[#2878b8]/30 sm:h-40 sm:w-40"
             />
 
             {/* Small blue dot */}
-            <motion.div
-              animate={{
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute right-[8%] top-[1%] z-20 h-3 w-3 rounded-full bg-[#2878b8]"
-            />
+            <div className="about-pulse absolute right-[8%] top-[1%] z-20 h-3 w-3 rounded-full bg-[#2878b8]" />
 
             {/* =========================
                 BACK PHOTO
             ========================== */}
             <motion.div
-              initial={{ opacity: 0, rotate: -8 }}
+              initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              animate={{
-                rotate: [-7, -3, -7],
-                y: [0, -12, 0],
-                x: [0, 5, 0],
-              }}
-              transition={{
-                opacity: {
-                  duration: 0.8,
-                },
-                rotate: {
-                  duration: 7,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
-                y: {
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
-                x: {
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
-              }}
-              className="absolute left-[4%] top-[10%] z-[1] h-[390px] w-[72%] overflow-hidden border-[10px] border-white bg-neutral-100 shadow-[0_30px_80px_rgba(0,0,0,0.15)] sm:h-[470px] sm:w-[68%] lg:h-[510px]"
+              transition={{ duration: 0.8 }}
+              className="about-float about-float-back absolute left-0 top-[2%] z-[1] h-[280px] w-[64%] overflow-hidden border-[8px] border-white bg-neutral-100 shadow-[0_30px_80px_rgba(0,0,0,0.15)] sm:left-[4%] sm:top-[10%] sm:h-[470px] sm:w-[68%] sm:border-[10px] lg:h-[510px]"
             >
-              <img
+              <Image
                 src="/about-1.jpg"
                 alt="Juliana Wada-Victor working"
-                className="h-full w-full object-cover"
+                fill
+                sizes="(min-width: 1024px) 400px, (min-width: 640px) 60vw, 70vw"
+                className="object-cover"
               />
 
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
@@ -205,41 +168,18 @@ export default function About() {
                 FRONT PHOTO
             ========================== */}
             <motion.div
-              initial={{ opacity: 0, rotate: 7 }}
+              initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              animate={{
-                rotate: [6, 11, 6],
-                y: [0, 14, 0],
-                x: [0, -6, 0],
-              }}
-              transition={{
-                opacity: {
-                  duration: 0.8,
-                  delay: 0.2,
-                },
-                rotate: {
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
-                y: {
-                  duration: 5.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
-                x: {
-                  duration: 6.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
-              }}
-              className="absolute bottom-[4%] right-[1%] z-[3] h-[360px] w-[67%] overflow-hidden border-[10px] border-white bg-neutral-100 shadow-[0_35px_90px_rgba(0,0,0,0.2)] sm:h-[430px] sm:w-[62%] lg:h-[470px]"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="about-float about-float-front absolute bottom-[2%] right-0 z-[3] h-[280px] w-[64%] overflow-hidden border-[8px] border-white bg-neutral-100 shadow-[0_35px_90px_rgba(0,0,0,0.2)] sm:bottom-[4%] sm:right-[1%] sm:h-[430px] sm:w-[62%] sm:border-[10px] lg:h-[470px]"
             >
-              <img
+              <Image
                 src="/about-2.jpg"
                 alt="Juliana Wada-Victor"
-                className="h-full w-full object-cover"
+                fill
+                sizes="(min-width: 1024px) 400px, (min-width: 640px) 60vw, 70vw"
+                className="object-cover"
               />
 
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
@@ -250,16 +190,9 @@ export default function About() {
             {/* =========================
                 ROTATING BADGE
             ========================== */}
-            <motion.div
-              animate={{
-                rotate: 360,
-              }}
-              transition={{
-                duration: 18,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="absolute bottom-[1%] left-[2%] z-[5] flex h-20 w-20 items-center justify-center rounded-full bg-[#2878b8] text-center text-[9px] font-semibold uppercase leading-4 tracking-[0.15em] text-white shadow-xl sm:h-24 sm:w-24 sm:text-[10px]"
+            <div
+              style={{ "--spin": "18s" } as CSSProperties}
+              className="about-spin absolute bottom-[1%] left-[2%] z-[5] flex h-20 w-20 items-center justify-center rounded-full bg-[#2878b8] text-center text-[9px] font-semibold uppercase leading-4 tracking-[0.15em] text-white shadow-xl sm:h-24 sm:w-24 sm:text-[10px]"
             >
               <span className="-rotate-0">
                 Engineer
@@ -268,7 +201,7 @@ export default function About() {
                 <br />
                 Builder
               </span>
-            </motion.div>
+            </div>
 
             {/* Decorative line */}
             <motion.div

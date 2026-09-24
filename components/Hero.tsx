@@ -143,11 +143,16 @@ export default function Hero() {
       className="
         relative
         h-[100svh]
-        min-h-[650px]
         w-full
         overflow-hidden
         bg-[#05070d]
         text-white
+
+        [--hero-fs:min(17vw,11svh)]
+        sm:[--hero-fs:min(13vw,11svh)]
+        md:min-h-[650px]
+        md:[--hero-fs:10vw]
+        lg:[--hero-fs:9vw]
       "
     >
       {/* =====================================================
@@ -383,11 +388,10 @@ export default function Hero() {
           pointer-events-none
           absolute
           left-5
-          bottom-[38%]
+          bottom-[calc(var(--hero-fs)*0.82+76px)]
           z-10
 
           sm:left-6
-          sm:bottom-[36%]
 
           md:left-8
           md:bottom-[34%]
@@ -417,10 +421,7 @@ export default function Hero() {
               leading-[0.73]
               tracking-[-0.075em]
               text-white
-
-              sm:text-[13vw]
-              md:text-[10vw]
-              lg:text-[9vw]
+              text-[length:var(--hero-fs)]
             "
           >
             SOFTWARE
@@ -435,17 +436,16 @@ export default function Hero() {
           pointer-events-none
           absolute
           right-5
-          bottom-6
+          bottom-[52px]
           z-10
           flex
           flex-col
           items-end
 
           sm:right-6
-          sm:bottom-7
 
           md:right-8
-          md:bottom-8
+          md:bottom-12
 
           lg:right-10
           lg:bottom-10
@@ -467,16 +467,12 @@ export default function Hero() {
             className="
               select-none
               whitespace-nowrap
-              text-[17vw]
               font-semibold
               uppercase
               leading-[0.82]
               tracking-[-0.075em]
               text-white
-
-              sm:text-[13vw]
-              md:text-[10vw]
-              lg:text-[9vw]
+              text-[length:var(--hero-fs)]
             "
           >
             ENGINEER
@@ -498,7 +494,7 @@ export default function Hero() {
             ease: [0.22, 1, 0.36, 1],
           }}
           className="
-            mt-5
+            mt-3
             h-[2px]
             min-w-[60px]
             bg-blue-500
@@ -529,10 +525,10 @@ export default function Hero() {
         }}
         className="
           absolute
-          top-24
+          top-[88px]
           left-5
           z-20
-          w-[175px]
+          w-[190px]
 
           sm:top-28
           sm:left-6
@@ -546,11 +542,11 @@ export default function Hero() {
         "
       >
         <div className="mb-3 flex items-center justify-between">
-          <span className="text-[7px] tracking-[0.2em] text-white/40 sm:text-[8px]">
+          <span className="text-[9px] tracking-[0.2em] text-white/50 sm:text-[8px] sm:text-white/40">
             SPECIALIZATION
           </span>
 
-          <span className="text-[7px] tracking-[0.2em] text-blue-300 sm:text-[8px]">
+          <span className="text-[9px] tracking-[0.2em] text-blue-300 sm:text-[8px]">
             01 / 04
           </span>
         </div>
@@ -571,11 +567,11 @@ export default function Hero() {
           />
         </div>
 
-        <p className="text-left text-[9px] font-medium tracking-[0.15em] text-white sm:text-[10px] md:text-xs">
+        <p className="text-left text-[11px] font-medium tracking-[0.15em] text-white sm:text-[10px] md:text-xs">
           JULIANA WADA-VICTOR
         </p>
 
-        <p className="mt-1 text-left text-[7px] tracking-[0.13em] text-white/50 sm:text-[8px]">
+        <p className="mt-1 text-left text-[9px] tracking-[0.13em] text-white/60 sm:text-[8px] sm:text-white/50">
           IT · DEVOPS · AI · SRE
         </p>
       </motion.div>
@@ -613,7 +609,7 @@ export default function Hero() {
           lg:left-10
         "
       >
-        <span className="text-[7px] tracking-[0.2em] text-white/40 sm:text-[8px]">
+        <span className="text-[9px] tracking-[0.2em] text-white/50 sm:text-[8px] sm:text-white/40">
           SCROLL TO EXPLORE
         </span>
 
@@ -662,8 +658,11 @@ export default function Hero() {
           lg:right-10
         "
       >
-        <p className="text-[7px] tracking-[0.18em] text-white/40 sm:text-[8px]">
-          DERBY · UNITED KINGDOM
+        <p className="text-[9px] tracking-[0.18em] text-white/50 sm:text-[8px] sm:text-white/40">
+          <span className="min-[380px]:hidden">DERBY · UK</span>
+          <span className="hidden min-[380px]:inline">
+            DERBY · UNITED KINGDOM
+          </span>
         </p>
       </motion.div>
 

@@ -47,3 +47,76 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: #4d7cff;
 }
+
+/* ---------------------------------------------------------
+   About section motion
+   Pure CSS so it runs on the compositor thread (no JS per
+   frame). `translate`, `transform` and `rotate` are separate
+   properties, so each axis keeps its own period and the loop
+   never snaps. `alternate` + ease-in-out gives a seamless
+   sine-like drift with no pause or jump at the ends.
+   --------------------------------------------------------- */
+
+@keyframes about-y {
+  from { translate: 0 0; }
+  to { translate: 0 var(--dy); }
+}
+
+@keyframes about-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(var(--dx)); }
+}
+
+@keyframes about-tilt {
+  from { rotate: var(--r0); }
+  to { rotate: var(--r1); }
+}
+
+@keyframes about-spin {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+@keyframes about-pulse {
+  from { scale: 1; }
+  to { scale: 1.2; }
+}
+
+.about-float {
+  rotate: var(--r0);
+  animation:
+    about-y var(--ty) ease-in-out infinite alternate,
+    about-x var(--tx) ease-in-out infinite alternate,
+    about-tilt var(--tr) ease-in-out infinite alternate;
+  will-change: transform, translate, rotate;
+  backface-visibility: hidden;
+}
+
+.about-float-back {
+  --dy: -12px; --dx: 5px; --r0: -7deg; --r1: -3deg;
+  --ty: 5s; --tx: 6s; --tr: 7s;
+}
+
+.about-float-front {
+  --dy: 14px; --dx: -6px; --r0: 6deg; --r1: 11deg;
+  --ty: 5.5s; --tx: 6.5s; --tr: 8s;
+}
+
+.about-spin {
+  animation: about-spin var(--spin, 30s) linear infinite;
+  will-change: rotate;
+  backface-visibility: hidden;
+}
+
+.about-pulse {
+  animation: about-pulse 1.5s ease-in-out infinite alternate;
+  will-change: scale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-float,
+  .about-spin,
+  .about-pulse {
+    animation: none;
+  }
+}
