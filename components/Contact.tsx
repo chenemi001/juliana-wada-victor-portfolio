@@ -162,7 +162,7 @@ export default function Contact() {
             </div>
 
             <p className="mt-4 text-lg text-white/70">
-              Nigeria
+              United Kingdom
             </p>
           </motion.div>
 
