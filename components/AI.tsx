@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { CSSProperties } from "react";
 import {
   ArrowUpRight,
   BrainCircuit,
@@ -40,9 +41,9 @@ export default function AI() {
       className="relative overflow-hidden bg-[#071521] text-white"
     >
       {/* Background glow */}
-      <div className="pointer-events-none absolute left-[-250px] top-[-150px] h-[600px] w-[600px] rounded-full bg-[#2878b8]/10 blur-[150px]" />
+      <div className="pointer-events-none absolute left-[-250px] top-[-150px] h-[900px] w-[900px] rounded-full bg-[radial-gradient(closest-side,rgba(40,120,184,0.10),transparent)]" />
 
-      <div className="pointer-events-none absolute right-[-200px] bottom-[-200px] h-[600px] w-[600px] rounded-full bg-[#4ca3d9]/10 blur-[160px]" />
+      <div className="pointer-events-none absolute right-[-200px] bottom-[-200px] h-[900px] w-[900px] rounded-full bg-[radial-gradient(closest-side,rgba(76,163,217,0.10),transparent)]" />
 
       {/* Grid */}
       <div
@@ -106,75 +107,42 @@ export default function AI() {
             className="relative mx-auto h-[400px] w-full max-w-[500px]"
           >
             {/* Outer orbit */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{
-                duration: 25,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="absolute left-1/2 top-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#4ca3d9]/20"
-            />
+            <div className="absolute left-1/2 top-1/2 aspect-square w-[min(320px,100%)] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#4ca3d9]/20" />
 
             {/* Middle orbit */}
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{
-                duration: 18,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="absolute left-1/2 top-1/2 h-[230px] w-[230px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#2878b8]/30"
-            />
+            <div className="absolute left-1/2 top-1/2 aspect-square w-[min(230px,72%)] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#2878b8]/30" />
 
             {/* Inner glow */}
             <div className="absolute left-1/2 top-1/2 h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2878b8]/20 blur-2xl" />
 
             {/* Core */}
-            <motion.div
-              animate={{
-                scale: [1, 1.08, 1],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#4ca3d9]/40 bg-[#0b1d2c]"
+            <div
+              style={{ "--to": 1.08 } as CSSProperties}
+              className="breathe absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#4ca3d9]/40 bg-[#0b1d2c]"
             >
               <BrainCircuit
                 size={42}
                 strokeWidth={1}
                 className="text-[#69b9e8]"
               />
-            </motion.div>
+            </div>
 
             {/* Orbiting nodes */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{
-                duration: 12,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="absolute left-1/2 top-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2"
+            <div
+              style={{ "--spin": "12s" } as CSSProperties}
+              className="orbit absolute left-1/2 top-1/2 aspect-square w-[min(320px,100%)] -translate-x-1/2 -translate-y-1/2"
             >
               <span className="absolute left-1/2 top-0 h-3 w-3 -translate-x-1/2 rounded-full bg-[#69b9e8] shadow-[0_0_25px_rgba(105,185,232,0.7)]" />
 
               <span className="absolute bottom-[15%] right-[7%] h-2.5 w-2.5 rounded-full bg-[#2878b8]" />
-            </motion.div>
+            </div>
 
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{
-                duration: 9,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="absolute left-1/2 top-1/2 h-[230px] w-[230px] -translate-x-1/2 -translate-y-1/2"
+            <div
+              style={{ "--spin": "9s" } as CSSProperties}
+              className="orbit orbit-reverse absolute left-1/2 top-1/2 aspect-square w-[min(230px,72%)] -translate-x-1/2 -translate-y-1/2"
             >
               <span className="absolute bottom-0 left-1/2 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-white/70" />
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* AI capabilities */}
@@ -194,7 +162,7 @@ export default function AI() {
                   }}
                   className="group relative overflow-hidden border border-white/10 bg-white/[0.025] p-7 transition-colors duration-500 hover:border-[#2878b8]/50 sm:p-9"
                 >
-                  <div className="absolute inset-y-0 left-0 w-0 bg-[#2878b8]/10 transition-all duration-500 group-hover:w-full" />
+                  <div className="absolute inset-0 origin-left scale-x-0 bg-[#2878b8]/10 transition-transform duration-500 ease-out group-hover:scale-x-100" />
 
                   <div className="relative flex gap-6">
                     <span className="pt-1 text-xs tracking-[0.2em] text-[#2878b8]">

@@ -120,3 +120,38 @@ a {
     animation: none;
   }
 }
+
+
+/* ---------------------------------------------------------
+   AI / DevOps orbit visuals
+   Compositor-driven (`rotate` / `scale` properties), so they
+   keep a steady frame rate even while the page is scrolling.
+   Linear + infinite on a full 360deg turn loops with no seam.
+   --------------------------------------------------------- */
+
+@keyframes breathe {
+  from { scale: 1; }
+  to { scale: var(--to, 1.08); }
+}
+
+.orbit {
+  animation: about-spin var(--spin, 20s) linear infinite;
+  will-change: rotate;
+  backface-visibility: hidden;
+}
+
+.orbit-reverse {
+  animation-direction: reverse;
+}
+
+.breathe {
+  animation: breathe var(--breathe, 2s) ease-in-out infinite alternate;
+  will-change: scale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit,
+  .breathe {
+    animation: none;
+  }
+}
